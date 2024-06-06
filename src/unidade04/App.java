@@ -18,5 +18,22 @@ public class App {
         servidor.setTelefones(telefoneResidencial);
         servidor.setTelefones(telefoneComercial);
         servidor.getTelefones();
+        System.out.println("----------------------");
+
+        Estatutario isabela = new Estatutario(2, 10_000, 1, "Isabela Sampaio");
+        System.out.println(isabela);
+        System.out.println(isabela.getSalarioBase());
+        System.out.println("----------------------");
+        Comissionado pedro = new Comissionado(6_000, 3_000, 6, "Pedro Pê");
+        System.out.println(pedro);
+        System.out.println("----------------------");
+        Temporario rafael = new Temporario("6 meses", 8_000, 10, "Rafael Barbosa");
+        System.out.println(rafael);
+        System.out.println("----------------------");
+        System.out.println(rafael.getContrato());
+        System.out.println(rafael.getSalario());
+        System.out.println(rafael.calcularSalarioHorasExtras(20) + rafael.getSalario());
+        System.out.println(rafael.getMatricula());
+
     }
 }

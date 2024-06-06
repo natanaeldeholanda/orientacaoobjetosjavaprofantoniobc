@@ -8,15 +8,16 @@ package unidade04;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ServidorPublico {
+public class ServidorPublico extends Pessoa {
+    private static final int VALOR_HORA_EXTRA = 40;
     //Inserindo Atributos
-    private int matricula;
-    private String nome;
-    private String orgao;
-    private String cargo;
-    private String lotacao;
-    private String email;
-    private double salario;
+    protected int matricula;
+    protected String nome;
+    protected String orgao;
+    protected String cargo;
+    protected String lotacao;
+    protected String email;
+    protected double salario;
 
     //Reuso - Associação
     private List<Curso> cursos = new LinkedList<>();
@@ -24,9 +25,17 @@ public class ServidorPublico {
     private List<Dependente> dependentes = new LinkedList<>();
     //Reuso - Composição
     private List<Telefone> telefones = new LinkedList<>();
+
     //Construtor padrão
     public ServidorPublico() {
 
+    }
+
+    @Override
+    public void exibirInformacoes() {
+        primeiroNome = nome.substring(0, nome.indexOf(" "));
+        ultimoNome = nome.substring(nome.indexOf(" ") + 1);
+        System.out.println("Nome completo: " + primeiroNome + " " + ultimoNome);
     }
 
     public void getCursos() {
@@ -36,7 +45,7 @@ public class ServidorPublico {
     }
 
     public void setCursos(Curso cursos) {
-        this.cursos.add(cursos) ;
+        this.cursos.add(cursos);
     }
 
     public void getDependentes() {
@@ -67,6 +76,11 @@ public class ServidorPublico {
         this.lotacao = lotacao;
         this.email = email;
         this.salario = salario;
+    }
+
+    public ServidorPublico(int matricula, String nome) {
+        this.matricula = matricula;
+        this.nome = nome;
     }
 
     public double getSalario() {
@@ -123,6 +137,12 @@ public class ServidorPublico {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public final double calcularSalarioHorasExtras(int horasTrabalhadas){
+        double salarioMensal = 0;
+        salarioMensal = salarioMensal + horasTrabalhadas * VALOR_HORA_EXTRA;
+        return (this.salario + salarioMensal);
     }
 
     @Override
