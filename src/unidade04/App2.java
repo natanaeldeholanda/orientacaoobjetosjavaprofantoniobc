@@ -1,7 +1,7 @@
 package unidade04;
 
 
-public class App2 {
+public class App2 implements APIServidorPublico {
 
     public static void verificarTipoServidorPublico(ServidorPublico servidor) {
         if (servidor instanceof Estatutario)
@@ -9,7 +9,7 @@ public class App2 {
         else if (servidor instanceof Comissionado) {
             System.out.println("Comissionado");
         } else if (servidor instanceof Temporario) {
-            System.out.println("Temporario");
+            System.out.println("Temporário");
         } else {
             System.out.println("Não é servidor público");
         }
@@ -27,5 +27,30 @@ public class App2 {
         System.out.println(pedro.calcularSalarioHorasExtras(40));
         System.out.println(pedro);
         isabella.exibirInformacoes();
+    }
+
+    @Override
+    public void adicionarServidorPublico() {
+
+    }
+
+    @Override
+    public void listarServidoresPublicos() {
+
+    }
+
+    @Override
+    public void listarServidoresPublicos(int matricula) {
+
+    }
+
+    @Override
+    public void alterarServidorPublico(ServidorPublico servidorAlterado) {
+
+    }
+
+    @Override
+    public void excluirServidorPublico(int matricula) {
+
     }
 }
