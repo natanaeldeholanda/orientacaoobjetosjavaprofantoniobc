@@ -84,6 +84,21 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
     @Override
     public void adicionarCursoServidorPublico(int matricula, int idcurso) {
 
+        boolean encontrou = false;
+        for (ServidorPublico servidor : servidores) {
+            if (servidor.getMatricula() == matricula) {
+                servidores.remove(servidor);
+                encontrou = true;
+                break;
+            }
+        }
+        if (!encontrou) {
+            System.out.println("O Servidor Público com a matrícula informada não existe");
+            {
+                System.out.println("A exclusão do Seridor Público com a matrícula" + matricula);
+            }
+        }
+
     }
 
     @Override
@@ -205,7 +220,7 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
     }
 
     @Override
-    public void excluirServidor(int idcurso, int matricula) {
+    public void excluirServidorCurso(int matricula, int idcurso) {
 
     }
 
@@ -213,6 +228,26 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
     public void listarServidorCurso(int idcurso) {
 
     }
+
+    @Override
+    public void excluirServidor(int idcurso, int matricula) {
+
+    }
+
+//    @Override
+//    public void listarServidorCurso(int matricula) {
+//       for(ServidorPublico servidor : servidores){
+//           if(servidor.getMatricula() == matricula){
+//
+//           }
+//           for(Curso curso : cursos){
+//               if (curso.getIdcurso() == idcurso){
+//                   servidor.se
+//               }
+//           }
+//       }
+//
+//    }
 
     public static void main(String[] args) {
         //PARTE ONDE CRIA, LISTA, ALTERA E EXCLUI OS SERVIDORES PÚBLICOS;
@@ -227,13 +262,11 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
         System.out.println("********** 02 Cursos **********");
         sistema.listarCursos();
 
-        sistema.adicionarServidorCurso(10,1);
-        sistema.adicionarServidorCurso(10,1);
+        sistema.adicionarCursoServidorPublico(1, 10);
+        sistema.adicionarCursoServidorPublico(1, 10);
 
-        sistema.adicionarServidorCurso(20,1);
-        sistema.adicionarServidorCurso(20,1);
-
-
+        sistema.adicionarCursoServidorPublico(1, 20);
+        sistema.adicionarCursoServidorPublico(1, 20);
 
     }
 }

@@ -40,6 +40,16 @@ public class App2 implements APIServidorPublico {
     }
 
     @Override
+    public void listarServidorPublico(int matricula) {
+
+    }
+
+    @Override
+    public void alterarServidorPublico(com.abctreinamentos.siscapacit.ServidorPublico servidorAlterado) {
+
+    }
+
+    @Override
     public void listarServidoresPublicos(int matricula) {
 
     }

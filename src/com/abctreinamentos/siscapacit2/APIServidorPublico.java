@@ -22,4 +22,7 @@ public interface APIServidorPublico {
 
     public void listarCursoServidorPublico(int matricula);
 
+    void listarCurso();
+
+    void excluirServidor(int idcurso, int matricula);
 }

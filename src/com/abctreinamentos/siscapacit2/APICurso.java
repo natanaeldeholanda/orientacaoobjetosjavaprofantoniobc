@@ -6,7 +6,7 @@ public interface APICurso {
 
     public void adicionarCurso();
 
-    public void listarCurso();
+    public void listarCursos();
 
     public void listarCurso(int matricula);
 
@@ -14,9 +14,9 @@ public interface APICurso {
 
     public void excluirCurso(int matricula);
 
-    public void adicionarServidorCurso(int idcurso, int matricula);
+    public void adicionarServidorCurso(int matricula, int idcurso);
 
-    public void excluirServidor(int idcurso, int matricula);
+    public void excluirServidorCurso(int matricula, int idcurso);
 
     public void listarServidorCurso(int idcurso);
 
