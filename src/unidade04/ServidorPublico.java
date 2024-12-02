@@ -44,8 +44,8 @@ public class ServidorPublico extends Pessoa {
         }
     }
 
-    public void setCursos(Curso cursos) {
-        this.cursos.add(cursos);
+    public void setCursos(Curso curso) {
+        this.cursos.add(curso);
     }
 
     public void getDependentes() {
@@ -64,8 +64,8 @@ public class ServidorPublico extends Pessoa {
         }
     }
 
-    public void setTelefones(Telefone telefones) {
-        this.telefones.add(telefones);
+    public void setTelefones(Telefone telefone) {
+        this.telefones.add(telefone);
     }
 
     public ServidorPublico(int matricula, String nome, String orgao, String cargo, String lotacao, String email, double salario) {

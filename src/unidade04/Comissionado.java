@@ -8,6 +8,7 @@ public class Comissionado extends ServidorPublico {
        super(matricula, nome);
        this.salarioFixo = salarioFixo;
        this.comissao = comissao;
+       super.salario = this.comissao + this.salarioFixo;
    }
    public double getComissao() {
        return comissao;
