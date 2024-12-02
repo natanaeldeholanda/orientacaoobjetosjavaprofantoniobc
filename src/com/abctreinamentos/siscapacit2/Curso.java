@@ -18,7 +18,7 @@ public class Curso {
     private String ofertante;
     private double valor;
 
-    private List<ServidorPublico> servidores = new LinkedList<ServidorPublico>();
+    private List<ServidorPublico> servidores = new LinkedList<>();
 
     public Curso(){
 

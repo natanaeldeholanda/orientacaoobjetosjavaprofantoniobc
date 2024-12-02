@@ -22,9 +22,10 @@ public class ServidorPublico{
     protected String lotacao;
     protected String email;
     protected double salario;
+    protected String curso;
 
     //Reuso - Associação
-    private List<unidade04.Curso> cursos = new LinkedList<>();
+    private List<Curso> cursos = new LinkedList<Curso>();
     //Reusoo - Agregação
     private List<Dependente> dependentes = new LinkedList<>();
     //Reuso - Composição
@@ -43,14 +44,14 @@ public class ServidorPublico{
 //    }
 
     public void getCursos() {
-        for (unidade04.Curso c : cursos) {
+        for (Curso c : cursos) {
             System.out.println(c);
         }
     }
 
-//    public void setCursos(Curso cursos) {
-//        this.cursos.add(cursos);
-//    }
+    public void setCursos(Curso cursos) {
+        this.cursos.add(cursos);
+    }
 //
 //    public void getDependentes() {
 //        for (Dependente d : dependentes) {
@@ -72,7 +73,7 @@ public class ServidorPublico{
         this.telefones.add(telefones);
     }
 
-    public ServidorPublico(int matricula, String nome, String orgao, String cargo, String lotacao, String email, double salario) {
+    public ServidorPublico(int matricula, String nome, String orgao, String cargo, String lotacao, String email, double salario, String curso) {
         this.matricula = matricula;
         this.nome = nome;
         this.orgao = orgao;
@@ -80,6 +81,7 @@ public class ServidorPublico{
         this.lotacao = lotacao;
         this.email = email;
         this.salario = salario;
+        this.curso = curso;
     }
 
     public ServidorPublico(int matricula, String nome) {

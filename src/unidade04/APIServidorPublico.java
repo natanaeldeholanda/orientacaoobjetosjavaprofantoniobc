@@ -6,17 +6,17 @@ import com.abctreinamentos.siscapacit.ServidorPublico;
 public interface APIServidorPublico {
     /***********************************/
 
-    public void adicionarServidorPublico();
+    void adicionarServidorPublico();
 
-    public void listarServidoresPublicos();
+    void listarServidoresPublicos();
 
-    public void listarServidorPublico(int matricula);
+    void listarServidorPublico(int matricula);
 
-    public void alterarServidorPublico(ServidorPublico servidorAlterado);
+    void alterarServidorPublico(ServidorPublico servidorAlterado);
 
     void listarServidoresPublicos(int matricula);
 
     void alterarServidorPublico(unidade04.ServidorPublico servidorAlterado);
 
-    public void excluirServidorPublico(int matricula);
+    void excluirServidorPublico(int matricula);
 }

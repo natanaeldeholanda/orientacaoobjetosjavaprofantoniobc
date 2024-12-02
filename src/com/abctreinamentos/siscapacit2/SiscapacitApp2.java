@@ -136,7 +136,7 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
         }
     }
 
-    //Método CRUD de Adicionar curso
+    //Metodo CRUD de Adicionar curso
     public void adicionarCurso() {
         int idCurso = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do curso"));
         String nome = JOptionPane.showInputDialog("Digite o nome do curso");
@@ -252,21 +252,21 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
     public static void main(String[] args) {
         //PARTE ONDE CRIA, LISTA, ALTERA E EXCLUI OS SERVIDORES PÚBLICOS;
         SiscapacitApp2 sistema = new SiscapacitApp2();
-        sistema.adicionarServidorPublico();
-        sistema.adicionarServidorPublico();
         System.out.println("********** 02 Servidores **********");
+        sistema.adicionarServidorPublico();
+        sistema.adicionarServidorPublico();
         sistema.listaServidoresPublicos();
 
-        sistema.adicionarCurso();
-        sistema.adicionarCurso();
         System.out.println("********** 02 Cursos **********");
+        sistema.adicionarCurso();
+        sistema.adicionarCurso();
         sistema.listarCursos();
 
         sistema.adicionarCursoServidorPublico(1, 10);
-        sistema.adicionarCursoServidorPublico(1, 10);
+        sistema.adicionarCursoServidorPublico(2, 10);
 
         sistema.adicionarCursoServidorPublico(1, 20);
-        sistema.adicionarCursoServidorPublico(1, 20);
+        sistema.adicionarCursoServidorPublico(2, 20);
 
     }
 }

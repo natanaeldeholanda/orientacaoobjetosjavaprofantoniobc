@@ -1,6 +1,5 @@
 package unidade04;
 
-
 public class App2 implements APIServidorPublico {
 
     public static void verificarTipoServidorPublico(ServidorPublico servidor) {
@@ -23,7 +22,7 @@ public class App2 implements APIServidorPublico {
         System.out.println(((Estatutario) isabella).getTempoServico());
         System.out.println(((Estatutario) isabella).getSalarioBase());
         verificarTipoServidorPublico(isabella);
-        ServidorPublico pedro = new Temporario("Temporário", 7500, 2, "Pedro Oliveira");
+        ServidorPublico pedro = new Temporario("1 ano", 7500, 2, "Pedro Oliveira");
         System.out.println(pedro.calcularSalarioHorasExtras(40));
         System.out.println(pedro);
         isabella.exibirInformacoes();
