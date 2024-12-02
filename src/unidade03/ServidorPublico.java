@@ -3,23 +3,34 @@ package unidade03;
 public class ServidorPublico {
 
     public static void main(String[] args) {
-        ServidorPublico isabela = new ServidorPublico(1, "Isabela Sampaio", "Auditor Fiscal", "123.456.789-00", 30, 15000);
-        ServidorPublico heila = new ServidorPublico(2, "Heila Ghassan", "Estagiária", "123.456.789-01", 20, 10000);
-        ServidorPublico maria = new ServidorPublico(3, "Maria Fontenele", "Analista de Sistemas", "123.456.789-02", 50, 9000);
-        ServidorPublico caio = new ServidorPublico(4, "Caio Santos", "Analista Triubutário", "123.456.789-03", 60, 12000);
+        ServidorPublico isabela = new ServidorPublico(1, "Isabela Sampaio", "Auditor Fiscal", "123.456.789-00", 30, 15000, Avaliacao.EXCELENTE);
+        totalServidores++;
+        ServidorPublico heila = new ServidorPublico(2, "Heila Ghassan", "Estagiária", "123.456.789-01", 20, 10000, Avaliacao.BOM);
+        totalServidores++;
+        ServidorPublico maria = new ServidorPublico(3, "Maria Fontenele", "Analista de Sistemas", "123.456.789-02", 50, 9000, Avaliacao.REGULAR);
+        totalServidores++;
+        ServidorPublico caio = new ServidorPublico(4, "Caio Santos", "Analista Triubutário", "123.456.789-03", 60, 12000, Avaliacao.INSATISFATORIO);
+        totalServidores++;
         System.out.println(isabela);
-        System.out.println("Horas Extras: " + isabela.calcularHoraExtra(10));
+        System.out.println("Horas Extras: " + isabela.calcularHoraExtra(10, 15, 20));
         System.out.println(heila);
-        System.out.println("Horas Extras: " + heila.calcularHoraExtra(12));
+        System.out.println("Horas Extras: " + heila.calcularHoraExtra(12, 8, 10));
         System.out.println(maria);
-        System.out.println("Horas Extras: " + maria.calcularHoraExtra(13));
+        System.out.println("Horas Extras: " + maria.calcularHoraExtra(13, 7, 4));
         System.out.println(caio);
-        System.out.println("Horas Extras: " + caio.calcularHoraExtra(11));
+        System.out.println("Total: (Salário + Horas Extras): " + caio.calcularHoraExtra(11, 20, 10));
+        System.out.println("---***---");
+        isabela.mostrarTamanhoNome();
+        isabela.mostrarPreNome();
+        isabela.mostrarSobrenome();
     }
 
-    public  double calcularHoraExtra(int horasTrabalhadas) {
-        double salarioMensal = this.salario + horasTrabalhadas * 40;
-        return salarioMensal;
+    public double calcularHoraExtra(int... horasTrabalhadas) {
+        double salarioMensal = 0;
+        for (int horasExtras : horasTrabalhadas) {
+            salarioMensal = salarioMensal + horasExtras *VALOR_HORA_EXTRA;
+        }
+        return (salario + salarioMensal);
     }
 
     @Override
@@ -31,20 +42,24 @@ public class ServidorPublico {
                 ", cpf='" + cpf + '\'' +
                 ", idade=" + idade +
                 ", salario=" + salario +
+                ", avaliação=" + avaliacao +
                 '}';
     }
 
     // Construtor
-    public ServidorPublico(int matricula, String nome, String cargo, String cpf, int idade, double salario) {
+    public ServidorPublico(int matricula, String nome, String cargo, String cpf, int idade, double salario, Avaliacao avaliacao) {
         this.matricula = matricula;
         this.nome = nome;
         this.cargo = cargo;
         this.cpf = cpf;
         this.idade = idade;
         this.salario = salario;
+        this.avaliacao = avaliacao;
     }
 
     // Atributos
+    private final int VALOR_HORA_EXTRA = 40;
+    private Avaliacao avaliacao;
     private int matricula;
     private int idade;
     private int tempoContribuicao;
@@ -61,6 +76,7 @@ public class ServidorPublico {
     private String celular;
     private String cpf;
     private String naturalidade;
+    private static int totalServidores;
 
     // Métodos Get e Set
     public int getMatricula() {
@@ -191,5 +207,25 @@ public class ServidorPublico {
         this.naturalidade = naturalidade;
     }
 
+    public static int getTotalServidores() {
+        return totalServidores;
+    }
 
+    public Avaliacao getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(Avaliacao avaliacao) {
+        this.avaliacao = avaliacao;
+    }
+
+    public void mostrarTamanhoNome() {
+        System.out.println(this.nome.length());
+    }
+    public void mostrarPreNome() {
+        System.out.println(this.nome.substring(0,nome.indexOf(" ")));
+    }
+    public void mostrarSobrenome() {
+        System.out.println(this.nome.substring(nome.indexOf(" ")+1));
+    }
 }
