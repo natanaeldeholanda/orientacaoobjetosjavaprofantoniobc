@@ -1,7 +1,5 @@
 package com.abctreinamentos.siscapacit2;
 
-import com.abctreinamentos.siscapacit.ServidorPublico;
-
 import javax.swing.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,10 +11,14 @@ import java.util.List;
 
 // Atributos
 public class SiscapacitApp2 implements APIServidorPublico, APICurso {
-    List<com.abctreinamentos.siscapacit.ServidorPublico> servidores = new LinkedList<>();
-    List<com.abctreinamentos.siscapacit.Curso> cursos = new LinkedList<>();
+    List<ServidorPublico> servidores = new LinkedList<>();
+    List<Curso> cursos = new LinkedList<>();
+    private ServidorPublico servidor;
+    private int matricula;
 
     //Métodos CRUD - Servidor Público
+
+    @Override
     public void adicionarServidorPublico() {
         int matricula = Integer.parseInt(JOptionPane.showInputDialog("Digite a matrícula do servidor"));
         String nomeServidor = JOptionPane.showInputDialog("Digite o nome do servidor");
@@ -25,8 +27,7 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
         String lotacao = JOptionPane.showInputDialog("Digite o lotação do servidor");
         String email = JOptionPane.showInputDialog("Digite o email do servidor");
         double salario = Double.parseDouble(JOptionPane.showInputDialog("Digite o salário do servidor"));
-
-        com.abctreinamentos.siscapacit.ServidorPublico servidor = new com.abctreinamentos.siscapacit.ServidorPublico(matricula, nomeServidor, orgao, cargo, lotacao, email, salario);
+        ServidorPublico servidor = new ServidorPublico(matricula, nomeServidor, orgao, cargo, lotacao, email, salario);
         servidores.add(servidor);
     }
 
@@ -36,14 +37,14 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
     }
 
     public void listaServidoresPublicos() {
-        for (com.abctreinamentos.siscapacit.ServidorPublico servidor : servidores) {
+        for (ServidorPublico servidor : servidores) {
             System.out.println(servidor);
         }
     }
 
     public void listarServidoresPublicos(int matricula) {
         boolean encontrou = false;
-        for (com.abctreinamentos.siscapacit.ServidorPublico servidor : servidores) {
+        for (ServidorPublico servidor : servidores) {
             if (servidor.getMatricula() == matricula) {
                 System.out.println(servidor);
                 encontrou = true;
@@ -62,7 +63,7 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
 
     public void excluirServidorPublico(int matricula) {
         boolean encontrou = false;
-        for (com.abctreinamentos.siscapacit.ServidorPublico servidor : servidores) {
+        for (ServidorPublico servidor : servidores) {
             if (servidor.getMatricula() == matricula) {
                 servidores.remove(servidor);
                 encontrou = true;
@@ -87,9 +88,14 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
         boolean encontrou = false;
         for (ServidorPublico servidor : servidores) {
             if (servidor.getMatricula() == matricula) {
-                servidores.remove(servidor);
-                encontrou = true;
-                break;
+                for (Curso curso : cursos) {
+                    if (curso.getIdcurso() == idcurso) {
+                        servidor.setCurso(curso);
+                        encontrou = true;
+                        break;
+                    }
+                }
+
             }
         }
         if (!encontrou) {
@@ -108,12 +114,19 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
 
     @Override
     public void listarCursoServidorPublico(int matricula) {
+        for (ServidorPublico servidor : servidores) {
 
+            if (servidor.getMatricula() == matricula) {
+                System.out.println(servidor);
+                System.out.print("Cursos do servidor: ");
+                servidor.getCurso();
+            }
+        }
     }
 
-    public void alterarServidorPublico(com.abctreinamentos.siscapacit.ServidorPublico servidorAlterado) {
+    public void alterarServidorPublico(ServidorPublico servidorAlterado) {
         boolean encontrou = false;
-        for (com.abctreinamentos.siscapacit.ServidorPublico servidor : servidores) {
+        for (ServidorPublico servidor : servidores) {
             if (servidor.getMatricula() == servidorAlterado.getMatricula()) {
                 servidores.remove(servidor);
                 servidores.add(servidorAlterado);
@@ -160,16 +173,21 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
 
     }
 
+    @Override
+    public void excluirCurso(int matricula) {
+
+    }
+
     //Método de listar cursos
     public void listarCursos() {
-        for (com.abctreinamentos.siscapacit.Curso curso : cursos) {
+        for (Curso curso : cursos) {
             System.out.println(curso);
         }
     }
 
     public void listarCursos(int idcurso) {
         boolean encontrou = false;
-        for (com.abctreinamentos.siscapacit.Curso curso : cursos) {
+        for (Curso curso : cursos) {
             if (curso.getIdcurso() == idcurso) {
                 System.out.println(curso);
                 encontrou = true;
@@ -180,43 +198,54 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
             System.out.println("O Curso com o ID informado não foi encontrado.");
         }
     }
+//
+//    public void alterarCurso(String cursoAlterado) {
+//        boolean encontrou = false;
+//        for (String curso : cursos) {
+//            if (curso.getIdcurso() == cursoAlterado.getIdcurso()) {
+//                cursos.remove(curso);
+//                cursos.add(cursoAlterado);
+//                encontrou = true;
+//                break;
+//            }
+//        }
+//        if (!encontrou) {
+//            System.out.println("O curso com o ID informado não foi encontrado.");
+//        } else {
+//            System.out.println("A Alteração do curso com o ID" + cursoAlterado.getIdcurso() + " foi realizada com sucesso.");
+//        }
+//    }
 
-    public void alterarCurso(com.abctreinamentos.siscapacit.Curso cursoAlterado) {
-        boolean encontrou = false;
-        for (com.abctreinamentos.siscapacit.Curso curso : cursos) {
-            if (curso.getIdcurso() == cursoAlterado.getIdcurso()) {
-                cursos.remove(curso);
-                cursos.add(cursoAlterado);
-                encontrou = true;
-                break;
-            }
-        }
-        if (!encontrou) {
-            System.out.println("O curso com o ID informado não foi encontrado.");
-        } else {
-            System.out.println("A Alteração do curso com o ID" + cursoAlterado.getIdcurso() + " foi realizada com sucesso.");
-        }
-    }
-
-    public void excluirCurso(int idcurso) {
-        boolean encontrou = false;
-        for (com.abctreinamentos.siscapacit.Curso curso : cursos) {
-            if (curso.getIdcurso() == idcurso) {
-                cursos.remove(curso);
-                encontrou = true;
-                break;
-            }
-        }
-        if (!encontrou) {
-            System.out.println("O curso com o ID informado não foi encontrado.");
-        } else {
-            System.out.println("A exclusão do curso com o ID" + idcurso + " foi realizada com sucesso.");
-        }
-    }
+//    public void excluirCurso(int idcurso) {
+//        boolean encontrou = false;
+//        for (String curso : cursos) {
+//            if (curso.getIdcurso() == idcurso) {
+//                cursos.remove(curso);
+//                encontrou = true;
+//                break;
+//            }
+//        }
+//        if (!encontrou) {
+//            System.out.println("O curso com o ID informado não foi encontrado.");
+//        } else {
+//            System.out.println("A exclusão do curso com o ID" + idcurso + " foi realizada com sucesso.");
+//        }
+//    }
 
     @Override
     public void adicionarServidorCurso(int idcurso, int matricula) {
-
+        boolean encontrou = false;
+        for(Curso curso : cursos){
+            if(curso.getIdcurso() == idcurso){
+                for(ServidorPublico servidor : servidores){
+                    if(curso.getIdcurso() == idcurso){
+                        curso.setServidores((List<ServidorPublico>) servidor);
+                        encontrou = true;
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -226,7 +255,13 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
 
     @Override
     public void listarServidorCurso(int idcurso) {
-
+        for(Curso curso: cursos){
+            if (curso.getIdcurso() == idcurso){
+                System.out.println(curso);
+                System.out.println("Servidores: ");
+                curso.getServidores();
+            }
+        }
     }
 
     @Override
@@ -267,6 +302,8 @@ public class SiscapacitApp2 implements APIServidorPublico, APICurso {
 
         sistema.adicionarCursoServidorPublico(1, 20);
         sistema.adicionarCursoServidorPublico(2, 20);
+        sistema.listarCursoServidorPublico(1);
+        sistema.listarCursoServidorPublico(2);
 
     }
 }

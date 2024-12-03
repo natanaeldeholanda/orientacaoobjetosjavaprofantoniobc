@@ -12,7 +12,7 @@ import unidade04.Telefone;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ServidorPublico{
+public class ServidorPublico {
     private static final int VALOR_HORA_EXTRA = 40;
     //Inserindo Atributos
     protected int matricula;
@@ -22,7 +22,7 @@ public class ServidorPublico{
     protected String lotacao;
     protected String email;
     protected double salario;
-    protected String curso;
+    protected Curso curso;
 
     //Reuso - Associação
     private List<Curso> cursos = new LinkedList<Curso>();
@@ -32,7 +32,7 @@ public class ServidorPublico{
     private List<Telefone> telefones = new LinkedList<>();
 
     //Construtor padrão
-    public ServidorPublico() {
+    public ServidorPublico(int matricula, String nomeServidor, String orgao, String cargo, String lotacao, String email, double salario) {
 
     }
 
@@ -73,7 +73,16 @@ public class ServidorPublico{
         this.telefones.add(telefones);
     }
 
-    public ServidorPublico(int matricula, String nome, String orgao, String cargo, String lotacao, String email, double salario, String curso) {
+    public Curso getCurso() {
+        System.out.println(cursos);
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public ServidorPublico(int matricula, String nome, String orgao, String cargo, String lotacao, String email, double salario, Curso curso) {
         this.matricula = matricula;
         this.nome = nome;
         this.orgao = orgao;
@@ -145,7 +154,7 @@ public class ServidorPublico{
         this.email = email;
     }
 
-    public final double calcularSalarioHorasExtras(int horasTrabalhadas){
+    public final double calcularSalarioHorasExtras(int horasTrabalhadas) {
         double salarioMensal = 0;
         salarioMensal = salarioMensal + horasTrabalhadas * VALOR_HORA_EXTRA;
         return (this.salario + salarioMensal);
