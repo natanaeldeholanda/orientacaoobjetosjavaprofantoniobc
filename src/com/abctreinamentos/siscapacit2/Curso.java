@@ -16,6 +16,7 @@ public class Curso {
     private String nome;
     private String formarealizacao;
     private String ofertante;
+    private String curso;
     private double valor;
 
     //Associação
@@ -33,6 +34,13 @@ public class Curso {
         this.formarealizacao = formarealizacao;
         this.ofertante = ofertante;
         this.valor = valor;
+    }
+
+    public String getCurso(){
+        return curso;
+    }
+    public void setCurso(String curso){
+        this.curso = curso;
     }
 
     public int getIdcurso() {
@@ -73,6 +81,14 @@ public class Curso {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    public void getServidores() {
+        System.out.println(servidores);
+    }
+
+    public void setServidores(List<ServidorPublico> servidor) {
+        servidores.add((ServidorPublico) servidor);
     }
 
     @Override
