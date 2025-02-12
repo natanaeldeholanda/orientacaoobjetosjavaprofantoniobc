@@ -18,12 +18,15 @@ public class Curso {
     private String ofertante;
     private double valor;
 
+    //Associação
     private List<ServidorPublico> servidores = new LinkedList<>();
 
+    //Construtor padrão
     public Curso(){
 
     }
 
+    // Outro Construtor
     public Curso(int idcurso, String nome, String formarealizacao, String ofertante, double valor) {
         this.idcurso = idcurso;
         this.nome = nome;
@@ -77,7 +80,7 @@ public class Curso {
         return "Curso{" +
                 "idcurso=" + idcurso +
                 ", nome='" + nome + '\'' +
-                ", formarealizacao='" + formarealizacao + '\'' +
+                ", forma realização='" + formarealizacao + '\'' +
                 ", ofertante='" + ofertante + '\'' +
                 ", valor=" + valor +
                 '}';

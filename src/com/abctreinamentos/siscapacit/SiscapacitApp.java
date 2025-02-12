@@ -98,7 +98,7 @@ public class SiscapacitApp {
         double valor = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor do curso"));
     }
 
-    //Método de listar cursos
+    //Metodo de listar cursos
     public void listarCursos() {
         for (Curso curso : cursos) {
             System.out.println(curso);
